@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAPOSI_CAKE_AND_BAKE | Premium Bakery</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#fdf2f8', // Soft pink background
+                            pink: '#ec4899',  // Primary pink
+                            purple: '#8b5cf6', // Deep purple accent
+                            darkBg: '#0f172a', // Deep slate for dark mode
+                            darkCard: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-pink-50/50 text-slate-800 dark:bg-brand-darkBg dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-40 bg-white/80 dark:bg-brand-darkCard/80 backdrop-blur-md border-b border-pink-100 dark:border-slate-700 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center space-x-2">
+                    <i class="fa-solid fa-cake-candles text-2xl text-brand-pink animate-pulse"></i>
+                    <span class="text-xl md:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-brand-pink to-brand-purple">
+                        TAPOSI_CAKE_AND_BAKE
+                    </span>
+                </div>
+                
+                <!-- Utilities -->
+                <div class="flex items-center space-x-4">
+                    <a href="#menu-section" class="hidden sm:inline-block text-sm font-medium hover:text-brand-pink dark:hover:text-pink-400 transition">Menu</a>
+                    <a href="#orders-section" class="hidden sm:inline-block text-sm font-medium hover:text-brand-purple dark:hover:text-purple-400 transition relative">
+                        Orders <span id="cart-count" class="bg-brand-pink text-white text-xs px-1.5 py-0.5 rounded-full hidden">0</span>
+                    </a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="p-2.5 rounded-full bg-pink-100 dark:bg-slate-700 text-brand-purple dark:text-amber-400 hover:scale-105 transition transform duration-200">
+                        <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <header class="relative bg-gradient-to-br from-pink-100 via-purple-50 to-white dark:from-slate-900 dark:via-purple-950/20 dark:to-brand-darkBg py-16 px-4 text-center border-b border-pink-100 dark:border-slate-800">
+        <div class="max-w-3xl mx-auto">
+            <span class="text-xs uppercase tracking-widest font-semibold text-brand-purple dark:text-pink-400 bg-pink-100/60 dark:bg-pink-950/40 px-3 py-1 rounded-full">Premium Confectionery</span>
+            <h1 class="text-4xl md:text-6xl font-black mt-4 mb-6 leading-tight text-slate-900 dark:text-white">
+                Baked with Love, <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-pink to-brand-purple">Designed for Luxury</span>
+            </h1>
+            <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg mb-8 max-w-xl mx-auto">
+                Indulge in artisanal, bespoke pastries crafted meticulously to turn your celebrations into unforgettable dynamic culinary memories.
+            </p>
+            <a href="#menu-section" class="inline-block bg-gradient-to-r from-brand-pink to-brand-purple text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-pink-500/20 hover:shadow-xl hover:shadow-purple-500/30 hover:-translate-y-0.5 transition duration-200">
+                Explore Premium Menu
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN WRAPPER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+        
+        <!-- READ: CAKE MENU SECTION -->
+        <section id="menu-section">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Our Signature Masterpieces</h2>
+                <div class="w-16 h-1 bg-brand-pink mx-auto mt-3 rounded-full"></div>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">Pick your flavor baseline to customize your luxury order</p>
+            </div>
+
+            <!-- Responsive Grid Menu -->
+            <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Dynamically populated by JS or rendered inline for quick visual bootstrap -->
+            </div>
+        </section>
+
+        <!-- CRUD SYSTEM: TRACK & MANAGE ORDERS -->
+        <section id="orders-section" class="border-t border-pink-100 dark:border-slate-800 pt-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Live Bakery Order Tracker</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Review, update details, or cancel your custom live requests down below</p>
+                </div>
+                <div class="bg-white dark:bg-brand-darkCard border border-pink-100 dark:border-slate-700 px-4 py-2 rounded-lg text-sm font-medium">
+                    Active Submissions: <span id="order-count-badge" class="text-brand-pink font-bold">0</span>
+                </div>
+            </div>
+
+            <!-- Dynamic Orders Table Container -->
+            <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-pink-100/60 dark:border-slate-800 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-pink-50/50 dark:bg-slate-800/50 border-b border-pink-100 dark:border-slate-700 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                <th class="p-5">Order Reference / Customer</th>
+                                <th class="p-5">Cake Spec</th>
+                                <th class="p-5 text-center">Weight</th>
+                                <th class="p-5">Delivery Location</th>
+                                <th class="p-5 text-right">Total Payable</th>
+                                <th class="p-5 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-tbody" class="divide-y divide-pink-50 dark:divide-slate-800 text-sm">
+                            <!-- Empty State dynamically loaded if empty -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CREATE & UPDATE ORDER MODAL FORM -->
+    <div id="order-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl max-w-md w-full mx-4 shadow-2xl border border-pink-100 dark:border-slate-700 overflow-hidden transform scale-95 transition-transform duration-300">
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-brand-pink to-brand-purple p-5 text-white flex justify-between items-center">
+                <div>
+                    <h3 id="modal-title" class="text-xl font-bold">Configure Custom Order</h3>
+                    <p id="modal-subtitle" class="text-pink-100 text-xs mt-0.5">Premium Bakery Request Pipeline</p>
+                </div>
+                <button onclick="closeModal()" class="text-white/80 hover:text-white p-1 rounded-full hover:bg-white/10 transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body Form -->
+            <form id="order-form" class="p-6 space-y-4" onsubmit="handleFormSubmit(event)">
+                <!-- Target Item Id hidden tracker pointer -->
+                <input type="hidden" id="form-item-id">
+                <input type="hidden" id="form-order-id"> <!-- Empty if create, filled if update -->
+
+                <!-- Selected Item Preview -->
+                <div class="bg-pink-50 dark:bg-slate-800 p-3 rounded-lg flex items-center space-x-3">
+                    <img id="form-preview-img" src="" alt="Cake Preview" class="w-12 h-12 rounded-md object-cover">
+                    <div>
+                        <h4 id="form-preview-title" class="font-bold text-sm text-slate-800 dark:text-white">Cake Flavor</h4>
+                        <p id="form-preview-price" class="text-xs text-brand-purple dark:text-pink-400 font-semibold">₹0 / Lb</p>
+                    </div>
+                </div>
+
+                <!-- Input Name -->
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 mb-1" for="customer-name">Your Name</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400"><i class="fa-solid fa-user text-xs"></i></span>
+                        <input type="text" id="customer-name" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-pink transition" placeholder="John Doe">
+                    </div>
+                </div>
+
+                <!-- Input Weight -->
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 mb-1" for="cake-weight">Weight (In Pounds)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400"><i class="fa-solid fa-weight-scale text-xs"></i></span>
+                        <input type="number" id="cake-weight" min="1" max="20" value="1" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-pink transition" oninput="calculateLiveTotal()">
+                    </div>
+                </div>
+
+                <!-- Input Address -->
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 mb-1" for="delivery-address">Delivery Address</label>
+                    <div class="relative">
+                        <span class="absolute top-2.5 left-0 flex items-center pl-3 text-slate-400"><i class="fa-solid fa-location-dot text-xs"></i></span>
+                        <textarea id="delivery-address" rows="2" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-pink transition" placeholder="Apartment, Street, Landmark, Pin code"></button></textarea>
+                    </div>
+                </div>
+
+                <!-- Pricing Dynamic Calculator Breakdown -->
+                <div class="border-t border-dashed border-slate-200 dark:border-slate-700 pt-3 flex justify-between items-center text-sm">
+                    <span class="font-medium text-slate-500">Estimated Total Cost:</span>
+                    <span id="form-total-cost" class="text-lg font-bold text-slate-900 dark:text-white">₹0</span>
+                </div>
+
+                <!-- Form Controls Actions buttons -->
+                <div class="flex space-x-3 pt-2">
+                    <button type="button" onclick="closeModal()" class="w-1/2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold py-2.5 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 text-sm transition">
+                        Cancel
+                    </button>
+                    <button type="submit" id="submit-btn" class="w-1/2 bg-gradient-to-r from-brand-pink to-brand-purple text-white font-semibold py-2.5 rounded-xl shadow-md hover:opacity-90 text-sm transition">
+                        Confirm Order
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- REUSABLE OWNER DETAILS SLICK FOOTER -->
+    <footer class="bg-white dark:bg-brand-darkCard border-t border-pink-100 dark:border-slate-800 mt-20 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+                <!-- Branding Info Column -->
+                <div>
+                    <h3 class="text-lg font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-brand-pink to-brand-purple">
+                        TAPOSI_CAKE_AND_BAKE
+                    </h3>
+                    <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">&copy; 2026 Premium Bakery. All Rights Reserved.</p>
+                </div>
+
+                <!-- Core Owner Information Grid Column -->
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
+                    <div class="flex items-center space-x-2 text-slate-600 dark:text-slate-400">
+                        <i class="fa-solid fa-user-tie text-brand-pink"></i>
+                        <span>Manager: <strong>Taposi</strong></span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-slate-600 dark:text-slate-400">
+                        <i class="fa-solid fa-phone text-brand-purple"></i>
+                        <a href="tel:6296145954" class="hover:underline">6296145954</a>
+                    </div>
+                </div>
+
+                <!-- Email Contact Column -->
+                <div class="md:text-right flex items-center justify-center md:justify-end space-x-2 text-sm text-slate-600 dark:text-slate-400">
+                    <i class="fa-solid fa-envelope text-brand-pink"></i>
+                    <a href="mailto:taposi62961@gmail.com" class="hover:text-brand-pink transition">taposi62961@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOCALSTORAGE BACKEND STATE CONTROLLER LOGIC -->
+    <script>
+        // BACKEND STATIC DATA CATALOG (READ TARGETS)
+        const CAKE_MENU_CATALOG = [
+            { id: 'cake-1', title: 'Royal Velvet Raspberry', desc: 'Layers of rich crimson buttermilk luxury filled with fresh pureed organic raspberries.', price: 450, img: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80' },
+            { id: 'cake-2', title: 'Midnight Truffle Ganache', desc: 'Deep Valrhona triple dark chocolate sponge filled with premium silk cocoa frosting.', price: 550, img: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=500&q=80' },
+            { id: 'cake-3', title: 'Salted Caramel Praline Royale', desc: 'Fluffy golden vanilla bean base drenched in artisanal rich sea salt butter glaze.', price: 500, img: 'https://images.unsplash.com/photo-1535141192574-5d4897c13636?auto=format&fit=crop&w=500&q=80' },
+            { id: 'cake-4', title: 'Amethyst Orchid Blueberry Crunch', desc: 'Elegantly flavored sweet blueberry infusion accented with a lavender buttercream coat.', price: 480, img: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=500&q=80' }
+        ];
+
+        // GLOBAL APPLICATION VOLATILE STATE
+        let ordersState = [];
+
+        // ON-LOAD INITIALIZATION BOOTSTRAPPER
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            renderMenuCatalog();
+            loadOrdersFromStorage();
+        });
+
+        // 1. THEME TOGGLER FUNCTIONALITY
+        function initTheme() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            // Sync with existing cached browser state preferences
+            if (localStorage.getItem('bakery-theme') === 'dark' || (!('bakery-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg';
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    themeIcon.className = 'fa-solid fa-moon text-lg';
+                    localStorage.setItem('bakery-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    themeIcon.className = 'fa-solid fa-sun text-lg';
+                    localStorage.setItem('bakery-theme', 'dark');
+                }
+            });
+        }
+
+        // 2. READ: RENDER MENU GRID ITEMS
+        function renderMenuCatalog() {
+            const menuGrid = document.getElementById('menu-grid');
+            menuGrid.innerHTML = CAKE_MENU_CATALOG.map(cake => `
+                <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-pink-100/70 dark:border-slate-800 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
+                    <div class="relative overflow-hidden h-48 bg-slate-200">
+                        <img src="${cake.img}" alt="${cake.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-purple dark:text-pink-400 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
+                            ₹${cake.price} / Lb
+                        </div>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white line-clamp-1">${cake.title}</h3>
+                            <p class="text-slate-500 dark:text-slate-400 text-xs mt-1.5 line-clamp-2 leading-relaxed">${cake.desc}</p>
+                        </div>
+                        <button onclick="openOrderModal('${cake.id}')" class="w-full bg-pink-50 dark:bg-slate-800 hover:bg-brand-pink hover:text-white dark:hover:bg-brand-purple transition-all duration-200 text-brand-pink dark:text-pink-300 font-bold text-xs uppercase tracking-wider py-2.5 rounded-xl border border-pink-100 dark:border-slate-700 flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>Order Now</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 3. STORAGE REFRESH DRIVER
+        function loadOrdersFromStorage() {
+            const savedOrders = localStorage.getItem('taposi_bakery_orders');
+            ordersState = savedOrders ? JSON.parse(savedOrders) : [];
+            renderOrdersTable();
+            updateGlobalBadges();
+        }
+
+        function saveOrdersToStorage() {
+            localStorage.setItem('taposi_bakery_orders', JSON.stringify(ordersState));
+            renderOrdersTable();
+            updateGlobalBadges();
+        }
+
+        function updateGlobalBadges() {
+            const count = ordersState.length;
+            document.getElementById('order-count-badge').innerText = count;
+            const cartCount = document.getElementById('cart-count');
+            if(count > 0) {
+                cartCount.innerText = count;
+                cartCount.classList.remove('hidden');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+        }
+
+        // 4. RENDERING POPULATED SUBMISSIONS TABLE (READ REFRESH)
+        function renderOrdersTable() {
+            const tbody = document.getElementById('orders-tbody');
+            if (ordersState.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="p-12 text-center text-slate-400 dark:text-slate-500">
+                            <i class="fa-solid fa-box-open text-4xl mb-3 block opacity-40"></i>
+                            <span class="text-sm font-medium">No active custom baking queues found at this time.</span>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = ordersState.map(order => {
+                const baseCake = CAKE_MENU_CATALOG.find(c => c.id === order.cakeId) || { title: 'Custom Cake', price: 0 };
+                return `
+                    <tr class="hover:bg-pink-50/20 dark:hover:bg-slate-800/30 transition">
+                        <td class="p-5">
+                            <div class="font-bold text-slate-900 dark:text-white tracking-wide">#${order.id}</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">${escapeHtml(order.customerName)}</div>
+                        </td>
+                        <td class="p-5 font-semibold text-slate-700 dark:text-slate-300">
+                            ${baseCake.title}
+                        </td>
+                        <td class="p-5 text-center font-bold text-slate-800 dark:text-slate-200">
+                            ${order.weight} <span class="text-xs font-normal text-slate-400">Lb</span>
+                        </td>
+                        <td class="p-5 max-w-xs truncate text-xs text-slate-600 dark:text-slate-400" title="${escapeHtml(order.address)}">
+                            ${escapeHtml(order.address)}
+                        </td>
+                        <td class="p-5 text-right font-black text-brand-purple dark:text-pink-400 text-base">
+                            ₹${order.totalPrice}
+                        </td>
+                        <td class="p-5 text-center">
+                            <div class="flex items-center justify-center space-x-2">
+                                <button onclick="openEditOrderModal('${order.id}')" class="p-2 text-indigo-600 hover:bg-indigo-50 dark:text-indigo-400 dark:hover:bg-indigo-950/50 rounded-lg transition" title="Modify Order Specifications">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button onclick="deleteOrder('${order.id}')" class="p-2 text-rose-600 hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 rounded-lg transition" title="Cancel Request">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 5. MODAL CONTROL MECHANICS (CREATE / UPDATE ENTRY)
+        function openOrderModal(cakeId) {
+            const cake = CAKE_MENU_CATALOG.find(c => c.id === cakeId);
+            if (!cake) return;
+
+            // Form resets to clear previous entries
+            document.getElementById('order-form').reset();
+            document.getElementById('form-order-id').value = ''; 
+            document.getElementById('form-item-id').value = cake.id;
+
+            // Bind metadata previews
+            document.getElementById('form-preview-img').src = cake.img;
+            document.getElementById('form-preview-title').innerText = cake.title;
+            document.getElementById('form-preview-price').innerText = `₹${cake.price} / Lb`;
+            
+            document.getElementById('modal-title').innerText = "Place Premium Order";
+            document.getElementById('submit-btn').innerText = "Submit Request";
+            
+            calculateLiveTotal();
+            toggleModalDisplay(true);
+        }
+
+        function openEditOrderModal(orderId) {
+            const order = ordersState.find(o => o.id === orderId);
+            if(!order) return;
+
+            const cake = CAKE_MENU_CATALOG.find(c => c.id === order.cakeId);
+            if(!cake) return;
+
+            document.getElementById('form-order-id').value = order.id;
+            document.getElementById('form-item-id').value = cake.id;
+            
+            document.getElementById('form-preview-img').src = cake.img;
+            document.getElementById('form-preview-title').innerText = cake.title;
+            document.getElementById('form-preview-price').innerText = `₹${cake.price} / Lb`;
+
+            // Backfill existing client states fields
+            document.getElementById('customer-name').value = order.customerName;
+            document.getElementById('cake-weight').value = order.weight;
+            document.getElementById('delivery-address').value = order.address;
+
+            document.getElementById('modal-title').innerText = "Edit Custom Request";
+            document.getElementById('submit-btn').innerText = "Update Request";
+
+            calculateLiveTotal();
+            toggleModalDisplay(true);
+        }
+
+        function toggleModalDisplay(show) {
+            const modal = document.getElementById('order-modal');
+            const innerContainer = modal.querySelector('.transform');
+            if (show) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    innerContainer.classList.remove('scale-95');
+                    innerContainer.classList.add('scale-100');
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0');
+                innerContainer.classList.remove('scale-100');
+                innerContainer.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function closeModal() {
+            toggleModalDisplay(false);
+        }
+
+        function calculateLiveTotal() {
+            const cakeId = document.getElementById('form-item-id').value;
+            const weightInput = document.getElementById('cake-weight').value;
+            const cake = CAKE_MENU_CATALOG.find(c => c.id === cakeId);
+            
+            const weight = parseInt(weightInput) || 0;
+            const pricePerLb = cake ? cake.price : 0;
+            
+            document.getElementById('form-total-cost').innerText = `₹${weight * pricePerLb}`;
+        }
+
+        // 6. PIPELINE CONTROLLER SUBMISSIONS FOR FORM (CREATE AND UPDATE PIPELINES)
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const orderId = document.getElementById('form-order-id').value;
+            const cakeId = document.getElementById('form-item-id').value;
+            const customerName = document.getElementById('customer-name').value.trim();
+            const weight = parseInt(document.getElementById('cake-weight').value);
+            const address = document.getElementById('delivery-address').value.trim();
+            
+            const cake = CAKE_MENU_CATALOG.find(c => c.id === cakeId);
+            const totalPrice = cake ? cake.price * weight : 0;
+
+            if (orderId) {
+                // UPDATE EXECUTOR FLOW
+                const index = ordersState.findIndex(o => o.id === orderId);
+                if (index !== -1) {
+                    ordersState[index] = { ...ordersState[index], customerName, weight, address, totalPrice };
+                }
+            } else {
+                // CREATE EXECUTOR FLOW
+                const newOrder = {
+                    id: 'ORD' + Math.floor(1000 + Math.random() * 9000), // Secure tracking hash tag pointer
+                    cakeId,
+                    customerName,
+                    weight,
+                    address,
+                    totalPrice
+                };
+                ordersState.push(newOrder);
+            }
+
+            saveOrdersToStorage();
+            closeModal();
+        }
+
+        // 7. DELETE ACTION PIPELINE EXECUTION
+        function deleteOrder(orderId) {
+            if (confirm("Are you sure you want to cancel this custom baking request from the bakery layout queue?")) {
+                ordersState = ordersState.filter(o => o.id !== orderId);
+                saveOrdersToStorage();
+            }
+        }
+
+        // UTILITIES SAFETY ESCAPER FOR STRING MANIPULATION RENDERINGS
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;")
+                      .replace(/</g, "&lt;")
+                      .replace(/>/g, "&gt;")
+                      .replace(/"/g, "&quot;")
+                      .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
